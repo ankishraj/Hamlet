@@ -1,0 +1,9 @@
+{% extends 'Accounts/main.html' %}
+{% load static %}
+{% block content %}
+    <form action="" method="post" class="form-check">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" class="btn btn-sm btn-success" name="Submit">
+    </form>
+{% endblock %}

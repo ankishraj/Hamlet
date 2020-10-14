@@ -1,0 +1,80 @@
+{% extends 'Accounts/main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="row" style="padding: 10px; margin-left: 5%">
+        <div class="col-md-4 col-style border-dark">
+            <h4 class="wide text-center font-weight-bold">Customer Information</h4>
+
+            <table class="table table-responsive-sm table-bordered">
+                <tr style="text-align: center">
+                    <th>Avatar</th>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="{% static 'images/user2.png' %}" alt="LOGO"
+                             style="height: 125px;display: block; margin-left: auto; margin-right: auto">
+                    </td>
+                </tr>
+
+            </table>
+            <table class="table table-responsive-sm table-bordered">
+                <tr>
+                    <th>Customer</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Total Orders</th>
+                </tr>
+                <tr>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.phone }}</td>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ order_count }}</td>
+                </tr>
+
+            </table>
+
+            <a class="btn-primary btn-dark btn-block text-center rounded-pill btn-style" href="">Update Customer</a>
+            <br>
+            <a class="btn-primary btn-dark btn-block text-center rounded-pill btn-style" href="">Delete Customer</a>
+        </div>
+        <div class="col-md-7 col-style border-dark" style="margin-left: 20px">
+            <h4 class="wide text-center font-weight-bold">Order Summary</h4>
+            <form class="form-inline my-2 my-lg-0" style="padding-bottom: 10px; width: auto">
+                <input class="form-control mr-sm-2" type="search" style="width: 70%" placeholder="Search"
+                       aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" style="width: 27%" type="submit">Search</button>
+            </form>
+            <table class="table table-responsive-sm table-bordered">
+                <tr>
+                    <th>Product</th>
+                    <th>Date Ordered</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.product.name }}</td>
+                        <td>{{ order.date_created }}</td>
+                        <td>{{ order.status }}</td>
+                        <td>
+                            <a href="{% url 'update_order' order.id %}" class="btn btn-sm btn-success text-white"
+                               style="color: #287a4b">
+                                Update
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'delete_order' order.id %}" class="btn btn-sm btn-danger text-white"
+                               style="color: #287a4b">
+                                Remove
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+{% endblock %}

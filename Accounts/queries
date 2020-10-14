@@ -1,0 +1,4 @@
+customers = Customer.objects.all()
+lastCustomer = customers.first() / customers.last() / Customer.objects.first()/last()
+customer1 = Customer.objects.get(id=1)
+orders = customer1.order_set.all()

@@ -1,0 +1,59 @@
+{% extends 'Accounts/main.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+    <p style="padding: 12px 12px 6px 15px; width: 100%; font-size: 1.2em"
+       class="text-capitalize text-center font-weight-bold">Welcome to your dashboard</p>
+
+    {% include 'Accounts/status.html' %}
+
+    <div class="row" style="padding: 10px; margin-left: 5%">
+        <div class="col-md-4 col-style border-dark">
+            <h4 class="wide text-center font-weight-bold">CUSTOMERS</h4>
+            <a class="btn-primary btn-dark btn-block text-center rounded-pill btn-style" href="">Create Customer</a>
+            <table class="table table-responsive-sm table-bordered" style="margin-top: 20px">
+                <tr>
+                    <th>Customer</th>
+                    <th>Phone</th>
+                    <th>View</th>
+                </tr>
+
+                {% for customer in customers %}
+                    <tr>
+                        <td>{{ customer.name }}</td>
+                        <td>{{ customer.phone }}</td>
+                        <td><a href="{% url 'customer' customer.id %}" class="btn btn-sm btn-info">View</a></td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+        <div class="col-md-7 col-style border-dark">
+            <h4 class="wide text-center font-weight-bold">LAST 5 ORDERS</h4>
+            <a class="btn-primary btn-dark btn-block text-center rounded-pill btn-style" href="{% url 'create_order' %}">Create Order</a>
+            <table class="table table-responsive-sm table-bordered" style="margin: 20px 0 10% 0">
+                <tr>
+                    <th>Product</th>
+                    <th>Date Ordered</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.product.name }}</td>
+                        <td>{{ order.date_created }}</td>
+                        <td>{{ order.status }}</td>
+                        <td><a href="{% url 'update_order' order.id %}" class="btn btn-sm btn-success text-white" style="color: #287a4b">Update</a></td>
+                        <td><a href="{% url 'delete_order' order.id %}" class="btn btn-sm btn-danger text-white" style="color: #287a4b">Remove</a></td>
+                    </tr>
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+{% endblock %}

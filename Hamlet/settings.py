@@ -75,17 +75,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'app-db',
         'USER': 'app',
-        'PASSWORD': 'Qu1teSe6ur3',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '5432'
-    }
-    # 'app-db': {
-    #     'ENGINE': 'sql_server.pyodbc',
-    #     'NAME': 'APP-DB',
-    #     'USER': 'app',
-    #     'PASSWORD': 'notsecureyet',
-    #     'HOST': 'DESKTOP-JV3EA7E\\ANKISH_SQL',
-    #     'PORT': '',
+    },
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
 }
 
